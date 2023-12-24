@@ -1,15 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
-import Todos from './components/Todos';
+import Contacts from './components/Contacts';
 
 function App() {
 
 
 
   return (
-    <>
-    <Todos />
-    </>
+    <div>
+      <Contacts />
+    </div>
     );
 }
 
