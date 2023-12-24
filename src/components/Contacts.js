@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import AddContactModal from "./AddContactModal";
 import ContactLists from "./ContactLists";
@@ -6,8 +6,14 @@ import ContactLists from "./ContactLists";
 export default function Contacts() {
   const [addContactModal, setAddContactModal] = useState(false);
 
-  const [addContacts, setAddContacts] = useState([]);
-  console.log(addContacts);
+  const [addContacts, setAddContacts] = useState(() => {
+    return JSON.parse(localStorage.getItem("contact"))
+  || [] });
+
+  
+  useEffect(() => {
+    localStorage.setItem("contact",JSON.stringify(addContacts))
+  }, [addContacts])
 
   const handleContacts = (data) => {
     setAddContacts([...addContacts, data]);
@@ -61,7 +67,7 @@ export default function Contacts() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center gap-5 mt-5">
+        <div className="flex flex-col items-stretch gap-5 px-[300px] mt-5">
           {addContacts.map((contactLists) => (
            <ContactLists 
            contactLists={contactLists}
