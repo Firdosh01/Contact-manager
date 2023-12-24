@@ -43,13 +43,13 @@ export default function Contacts() {
           </button>
         </div>
       </div>
-      <div className="bg-[#121D2B] py-5 ">
+      <div className="bg-[#121D2B] py-10">
         <div className="flex flex-col items-center justify-center">
           <p className="pb-2 text-lg text-gray-500">Search name & email</p>
           <div className="flex gap-2">
             <input
               type="text"
-              className="rounded-full outline-none bg-slate-700 w-[400px] px-2 text-white"
+              className="rounded-full outline-none bg-slate-700 md:w-[400px] w-[300px] px-2 text-white"
             />
             <div className="bg-[#B554D7] w-fit p-2 rounded-full cursor-pointer">
               <svg
@@ -67,10 +67,12 @@ export default function Contacts() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-stretch gap-5 px-[300px] mt-5">
-          {addContacts.map((contactLists) => (
+        <div className="flex flex-col items-stretch gap-3 lg:px-[200px] md:px-[40px] px-[10px] mt-5">
+          {addContacts.map((contactLists, index) => (
            <ContactLists 
            contactLists={contactLists}
+           setAddContacts={setAddContacts}
+           addContacts={addContacts}
            />
           ))}
         </div>

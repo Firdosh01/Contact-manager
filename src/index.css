@@ -14,10 +14,11 @@
 .bg-btn {
   background-color: rgba(255, 255, 255, 0.4);
 }
+
 .addContact_Modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(189, 189, 189, 0.9);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
 }

@@ -29,8 +29,8 @@ export default function AddContactModal({
   };
   
   return (
-    <div className="addContact_Modal">
-      <div className="bg-[#121D2B] rounded-md w-[300px] m-5 p-4  relative">
+    <div className="fixed inset-0 z-[1000] !mt-0 grid place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
+      <div className="bg-[#121D2B] rounded-md w-[300px] m-5 p-4 relative">
         <h3 className="text-[#B554D7] text-center text-xl">Add Contact</h3>
         <div
           className="absolute cursor-pointer right-2 top-4"
