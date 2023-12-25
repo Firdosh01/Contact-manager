@@ -2,9 +2,11 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import AddContactModal from "./AddContactModal";
 import ContactLists from "./ContactLists";
+import EditContactModal from "./EditContactModal";
 
 export default function Contacts() {
   const [addContactModal, setAddContactModal] = useState(false);
+  const [editContactModal, setEditContactModal] = useState(false);
 
   const [addContacts, setAddContacts] = useState(() => {
     return JSON.parse(localStorage.getItem("contact"))
@@ -73,18 +75,15 @@ export default function Contacts() {
            contactLists={contactLists}
            setAddContacts={setAddContacts}
            addContacts={addContacts}
+           setEditContactModal={setEditContactModal}
            />
           ))}
         </div>
       </div>
 
       <div>
-        {addContactModal && (
-          <AddContactModal
-            setAddContactModal={setAddContactModal}
-            handleContacts={handleContacts}
-          />
-        )}
+        {addContactModal && ( <AddContactModal setAddContactModal={setAddContactModal} handleContacts={handleContacts} /> )}
+        {editContactModal && ( <EditContactModal setEditContactModal={setEditContactModal}  />)}
       </div>
     </div>
   );

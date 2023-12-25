@@ -2,7 +2,7 @@ import React from "react";
 import { BiSolidEdit } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 
-export default function ContactLists({ contactLists, setAddContacts, addContacts}) {
+export default function ContactLists({ contactLists, setAddContacts, addContacts, setEditContactModal}) {
   
   const handleDeleteContact = (contact) => {
     setAddContacts(addContacts.filter((id) => id !== contact ))
@@ -45,7 +45,7 @@ export default function ContactLists({ contactLists, setAddContacts, addContacts
         </div>
 
         <div className="flex gap-2">
-          <div className="text-2xl text-[#B554D7] cursor-pointer">
+          <div className="text-2xl text-[#B554D7] cursor-pointer" onClick={() => setEditContactModal(true)}>
             <BiSolidEdit />
           </div>
           <div className="text-2xl text-[#B554D7] cursor-pointer" onClick={() => handleDeleteContact(contactLists)}>

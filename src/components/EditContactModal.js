@@ -1,39 +1,13 @@
 import React from "react";
-import { useState } from "react";
-import toast from "react-hot-toast";
 
-export default function AddContactModal({
-  setAddContactModal,
-  handleContacts,
-}) {
-  const [contact, setContact] = useState({
-    name: "",
-    email: "",
-  });
-
-  const changeHandler = (e) => {
-    setContact((prevData) => ({
-      ...prevData,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleAddContacts = () => {
-    if (contact.name === "" || contact.email === "") {
-      console.log("Please Enter contact");
-    } else {
-      handleContacts(contact);
-      setAddContactModal(false);
-    }
-  };
-
+export default function EditContactModal({ setEditContactModal }) {
   return (
     <div className="fixed inset-0 z-[1000] !mt-0 grid place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
       <div className="bg-[#121D2B] rounded-md w-[300px] m-5 p-4 relative">
-        <h3 className="text-[#B554D7] text-center text-xl">Add Contact</h3>
+        <h3 className="text-[#B554D7] text-center text-xl">Edit Contact</h3>
         <div
           className="absolute cursor-pointer right-2 top-4"
-          onClick={() => setAddContactModal(false)}
+          onClick={() => setEditContactModal(false)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -59,25 +33,34 @@ export default function AddContactModal({
               name="name"
               placeholder="Enter name"
               className="p-2 text-white rounded-sm outline-none bg-slate-700"
-              value={contact.name}
-              onChange={changeHandler}
             />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="Email" className="text-white ">
-              Email
+              Age
             </label>
             <input
               type="text"
-              id="Email"
-              name="email"
+              id="Age"
+              name="Age"
               placeholder="Enter email"
               className="p-2 text-white rounded-sm outline-none bg-slate-700"
-              value={contact.email}
-              onChange={changeHandler}
             />
           </div>
-          <div onClick={() => handleAddContacts()}>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="Email" className="text-white ">
+              Email address
+            </label>
+            <input
+              type="text"
+              id="Age"
+              name="Age"
+              placeholder="Enter email"
+              className="p-2 text-white rounded-sm outline-none bg-slate-700"
+            />
+          </div>
+
+          <div>
             <button className="bg-[#B554D7] py-2 px-5 w-fit text-black flex rounded-sm">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +74,7 @@ export default function AddContactModal({
                   fill="#121D2B"
                 />
               </svg>
-              Add
+              Saved
             </button>
           </div>
         </div>
