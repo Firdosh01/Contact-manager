@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 export default function AddContactModal({
   setAddContactModal,
   handleContacts,
+  editContact
 }) {
   const [contact, setContact] = useState({
     name: "",
@@ -30,7 +31,7 @@ export default function AddContactModal({
   return (
     <div className="fixed inset-0 z-[1000] !mt-0 grid place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
       <div className="bg-[#121D2B] rounded-md w-[300px] m-5 p-4 relative">
-        <h3 className="text-[#B554D7] text-center text-xl">Add Contact</h3>
+        <h3 className="text-[#B554D7] text-center text-xl">{editContact ? "Update " : "Add Contact"}</h3>
         <div
           className="absolute cursor-pointer right-2 top-4"
           onClick={() => setAddContactModal(false)}
@@ -91,7 +92,7 @@ export default function AddContactModal({
                   fill="#121D2B"
                 />
               </svg>
-              Add
+              {editContact ? "Saved" : "Add"}
             </button>
           </div>
         </div>

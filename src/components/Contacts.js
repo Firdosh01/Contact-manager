@@ -2,11 +2,10 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import AddContactModal from "./AddContactModal";
 import ContactLists from "./ContactLists";
-import EditContactModal from "./EditContactModal";
+import {v4 as uuidv4} from 'uuid'
 
 export default function Contacts() {
   const [addContactModal, setAddContactModal] = useState(false);
-  const [editContactModal, setEditContactModal] = useState(false);
 
   const [addContacts, setAddContacts] = useState(() => {
     return JSON.parse(localStorage.getItem("contact"))
@@ -18,8 +17,15 @@ export default function Contacts() {
   }, [addContacts])
 
   const handleContacts = (data) => {
-    setAddContacts([...addContacts, data]);
+    if(addContacts.findIndex((contacts) => contacts.data.email === data.email) === -1){
+      setAddContacts([...addContacts, {data, id:uuidv4()}]);
+    }
   };
+
+  const handleDeleteContact = (contact) => {
+    setAddContacts(addContacts.filter((id) => id !== contact ))
+  }
+
 
   return (
     <div>
@@ -73,17 +79,14 @@ export default function Contacts() {
           {addContacts.map((contactLists, index) => (
            <ContactLists 
            contactLists={contactLists}
-           setAddContacts={setAddContacts}
-           addContacts={addContacts}
-           setEditContactModal={setEditContactModal}
+           handleDeleteContact={handleDeleteContact}
            />
           ))}
         </div>
       </div>
 
       <div>
-        {addContactModal && ( <AddContactModal setAddContactModal={setAddContactModal} handleContacts={handleContacts} /> )}
-        {editContactModal && ( <EditContactModal setEditContactModal={setEditContactModal}  />)}
+        {addContactModal  && ( <AddContactModal setAddContactModal={setAddContactModal} handleContacts={handleContacts} /> )}
       </div>
     </div>
   );
