@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+
+/** components */
 import AddContactModal from "./AddContactModal";
 import ContactLists from "./ContactLists";
 import {v4 as uuidv4} from 'uuid'
 
-export default function Contacts() {
-  const [addContactModal, setAddContactModal] = useState(false);
-
+export default function Contacts({addContactModal, setAddContactModal}) {
   const [addContacts, setAddContacts] = useState(() => {
     return JSON.parse(localStorage.getItem("contact"))
   || [] });
-
   
   useEffect(() => {
     localStorage.setItem("contact",JSON.stringify(addContacts))
@@ -26,38 +25,16 @@ export default function Contacts() {
     setAddContacts(addContacts.filter((id) => id !== contact ))
   }
 
-
   return (
     <div>
-      <div className="bg-[#B554D7] h-[100px]">
-        <div className="flex items-center justify-center">
-          <button
-            className="flex gap-1 outline-none bg-btn hover:text-[#B554D7] py-4 w-[60%] text-center text-[#121D2B] hover:bg-[#121D2B] rounded duration-500 font-semibold text-xl justify-center items-center mt-8"
-            onClick={() => setAddContactModal(true)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path
-                d="M19 11H13V5C13 4.73478 12.8946 4.48043 12.7071 4.29289C12.5196 4.10536 12.2652 4 12 4C11.7348 4 11.4804 4.10536 11.2929 4.29289C11.1054 4.48043 11 4.73478 11 5V11H5C4.73478 11 4.48043 11.1054 4.29289 11.2929C4.10536 11.4804 4 11.7348 4 12C4 12.2652 4.10536 12.5196 4.29289 12.7071C4.48043 12.8946 4.73478 13 5 13H11V19C11 19.2652 11.1054 19.5196 11.2929 19.7071C11.4804 19.8946 11.7348 20 12 20C12.2652 20 12.5196 19.8946 12.7071 19.7071C12.8946 19.5196 13 19.2652 13 19V13H19C19.2652 13 19.5196 12.8946 19.7071 12.7071C19.8946 12.5196 20 12.2652 20 12C20 11.7348 19.8946 11.4804 19.7071 11.2929C19.5196 11.1054 19.2652 11 19 11Z"
-                fill="#B554D7"
-              />
-            </svg>
-            Add contact
-          </button>
-        </div>
-      </div>
       <div className="bg-[#121D2B] py-10">
         <div className="flex flex-col items-center justify-center">
           <p className="pb-2 text-lg text-gray-500">Search name & email</p>
           <div className="flex gap-2">
             <input
               type="text"
-              className="rounded-full outline-none bg-slate-700 md:w-[400px] w-[300px] px-2 text-white"
+              placeholder="Search contacts"
+              className="rounded-full outline-none bg-slate-700 md:w-[400px] w-[300px] px-4 text-white placeholder:select-none"
             />
             <div className="bg-[#B554D7] w-fit p-2 rounded-full cursor-pointer">
               <svg

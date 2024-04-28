@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import toast from "react-hot-toast";
 
 export default function AddContactModal({
   setAddContactModal,
@@ -17,9 +16,10 @@ export default function AddContactModal({
       ...prevData,
       [e.target.name]: e.target.value,
     }));
-  };
+  };  
 
-  const handleAddContacts = () => {
+  const handleAddContacts = (e) => {
+    e.preventDefault()
     if (contact.name === "" || contact.email === "") {
       console.log("Please Enter contact");
     } else {
@@ -30,10 +30,10 @@ export default function AddContactModal({
 
   return (
     <div className="fixed inset-0 z-[1000] !mt-0 grid place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
-      <div className="bg-[#121D2B] rounded-md w-[300px] m-5 p-4 relative">
-        <h3 className="text-[#B554D7] text-center text-xl">{editContact ? "Update " : "Add Contact"}</h3>
+      <div className="bg-[#121D2B] rounded-md w-[500px] m-5 p-4 relative">
+        <h3 className="text-[#B554D7] text-center text-xl">{editContact ? "Update Contact" : "Add Contact"}</h3>
         <div
-          className="absolute cursor-pointer right-2 top-4"
+          className="absolute cursor-pointer right-2 top-4" 
           onClick={() => setAddContactModal(false)}
         >
           <svg
@@ -49,7 +49,7 @@ export default function AddContactModal({
             />
           </svg>
         </div>
-        <div className="flex flex-col gap-3">
+        <form className="flex flex-col gap-3" onClick={(e) => handleAddContacts(e)}>
           <div className="flex flex-col gap-2">
             <label htmlFor="Name" className="text-white ">
               Name
@@ -78,8 +78,8 @@ export default function AddContactModal({
               onChange={changeHandler}
             />
           </div>
-          <div onClick={() => handleAddContacts()}>
-            <button className="bg-[#B554D7] py-2 px-5 w-fit text-black flex rounded-sm">
+          <div>
+            <button type="submit" className="bg-[#B554D7] py-2 px-5 w-fit text-black flex rounded-sm">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -92,10 +92,10 @@ export default function AddContactModal({
                   fill="#121D2B"
                 />
               </svg>
-              {editContact ? "Saved" : "Add"}
+              {editContact ? "Update" : "Add"}
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
