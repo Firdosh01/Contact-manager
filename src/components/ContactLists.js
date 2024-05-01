@@ -4,17 +4,16 @@ import React, { useState } from "react";
 import { BiSolidEdit } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 
-export default function ContactLists({ contactLists, handleDeleteContact}) {
-console.log(contactLists)
-const [editContactData, setEditContactData] = useState([])
+export default function ContactLists({ contactLists, handleDeleteContact }) {
+  console.log(contactLists);
+  const [editContactData, setEditContactData] = useState([]);
 
+  const editData = (id) => {
+    console.log(id);
+    setEditContactData(contactLists.filter((ids) => ids !== id));
+    console.log(editContactData);
+  };
 
-const editData = (id) => {
-console.log(id)
-setEditContactData(contactLists.filter((ids) => ids !== id ))
-console.log(editContactData)
-}
-  
   return (
     <div>
       <div
@@ -47,16 +46,22 @@ console.log(editContactData)
             </svg>
           </div>
           <div>
-            <h3 className="text-xl text-white">{contactLists?.data.name}</h3>
-            <p className="text-sm text-slate-400">{contactLists?.data.email}</p>
+            <h3 className="text-xl text-white capitalize">{contactLists?.data.name}</h3>
+            <p className="text-sm text-slate-400">{contactLists?.data.number}</p>
           </div>
         </div>
 
         <div className="flex gap-2">
-          <div className="text-2xl text-[#B554D7] cursor-pointer"  onClick={() => editData(contactLists.id)}>
+          <div
+            className="text-2xl text-[#B554D7] cursor-pointer"
+            onClick={() => editData(contactLists.id)}
+          >
             <BiSolidEdit />
           </div>
-          <div className="text-2xl text-[#B554D7] cursor-pointer" onClick={() => handleDeleteContact(contactLists)}>
+          <div
+            className="text-2xl text-[#B554D7] cursor-pointer"
+            onClick={() => handleDeleteContact(contactLists)}
+          >
             <MdDelete />
           </div>
         </div>

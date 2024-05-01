@@ -8,10 +8,8 @@ export default function AddContactModal({
 }) {
   const [contact, setContact] = useState({
     name: "",
-    email: "",
+    number: "",
   });
-
-  
 
   const changeHandler = (e) => {
     setContact((prevData) => ({
@@ -22,7 +20,7 @@ export default function AddContactModal({
 
   const handleAddContacts = (e) => {
     e.preventDefault()
-    if (contact.name === "" || contact.email === "") {
+    if (contact.name === "" || contact.number === "") {
       alert("Please enter contact details")
     } else {
       handleContacts(contact);
@@ -73,16 +71,16 @@ export default function AddContactModal({
             />
           </div>
           <div className="flex flex-col gap-2">
-            <label htmlFor="Email" className="text-white ">
-              Email
+            <label htmlFor="number" className="text-white ">
+              Phone no
             </label>
             <input
               type="text"
-              id="Email"
-              name="email"
-              placeholder="Enter email"
+              id="number"
+              name="number"
+              placeholder="Enter Phone no"
               className="p-2 text-white rounded-sm outline-none bg-slate-700"
-              value={contact.email}
+              value={contact.number}
               onChange={changeHandler}
             />
           </div>

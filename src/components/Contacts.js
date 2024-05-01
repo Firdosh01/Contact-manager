@@ -2,7 +2,6 @@ import React from "react";
 
 /** components */
 import ContactLists from "./ContactLists";
-import AddContactModal from "./AddContactModal";
 
 export default function Contacts({
   addContacts,
@@ -12,7 +11,7 @@ export default function Contacts({
     <div>
       <div className="bg-[#121D2B] py-10">
         <div className="flex flex-col items-center justify-center">
-          <p className="pb-2 text-lg text-gray-500">Search name & email</p>
+          <p className="pb-2 text-lg text-gray-500">Search by name & number</p>
           <div className="flex gap-2">
             <input
               type="text"
@@ -44,10 +43,6 @@ export default function Contacts({
           ))}
         </div>
       </div>
-      
-      {/* <div>
-        {addContactModal  && ( <AddContactModal setAddContactModal={setAddContactModal} handleContacts={handleContacts} /> )}
-      </div> */}
     </div>
   );
 }

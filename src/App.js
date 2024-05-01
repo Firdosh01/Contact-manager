@@ -17,7 +17,7 @@ function App() {
   }, [addContacts]);
 
   const handleContacts = (data) => {
-    if(addContacts.findIndex((contacts) => contacts.data.email === data.email) === -1){
+    if(addContacts.findIndex((contacts) => contacts.data.number === data.number) === -1){
       setAddContacts([...addContacts, {data, id:uuidv4()}]);
     }
   };
@@ -59,9 +59,7 @@ function App() {
           <AddContactModal
             setAddContactModal={setAddContactModal}
             handleContacts={handleContacts}
-          >
-            ok
-          </AddContactModal>
+          />
         )}
       </div>
     </div>
