@@ -11,6 +11,8 @@ export default function AddContactModal({
     email: "",
   });
 
+  
+
   const changeHandler = (e) => {
     setContact((prevData) => ({
       ...prevData,
@@ -21,15 +23,21 @@ export default function AddContactModal({
   const handleAddContacts = (e) => {
     e.preventDefault()
     if (contact.name === "" || contact.email === "") {
-      console.log("Please Enter contact");
+      alert("Please enter contact details")
     } else {
       handleContacts(contact);
-      setAddContactModal(false);
+      setAddContactModal(false);  
+    }
+  };
+
+  const handleOverlayClick = (event) => {
+    if (event.target === event.currentTarget) {
+      setAddContactModal(false);  
     }
   };
 
   return (
-    <div className="fixed inset-0 z-[1000] !mt-0 grid place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
+    <div onClick={handleOverlayClick} className="fixed inset-0 z-[1000] !mt-0 grid place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
       <div className="bg-[#121D2B] rounded-md w-[500px] m-5 p-4 relative">
         <h3 className="text-[#B554D7] text-center text-xl">{editContact ? "Update Contact" : "Add Contact"}</h3>
         <div
@@ -49,7 +57,7 @@ export default function AddContactModal({
             />
           </svg>
         </div>
-        <form className="flex flex-col gap-3" onClick={(e) => handleAddContacts(e)}>
+        <form className="flex flex-col gap-3" onSubmit={(e) => handleAddContacts(e)}>
           <div className="flex flex-col gap-2">
             <label htmlFor="Name" className="text-white ">
               Name
@@ -78,11 +86,11 @@ export default function AddContactModal({
               onChange={changeHandler}
             />
           </div>
-          <div>
-            <button type="submit" className="bg-[#B554D7] py-2 px-5 w-fit text-black flex rounded-sm">
+          <div  className="w-fit">
+            <button type="submit" className="bg-[#B554D7]  py-2 px-5 w-fit text-black flex rounded-sm">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="24"
+                width="24"  
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"

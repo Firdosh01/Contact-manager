@@ -1,30 +1,13 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React from "react";
 
 /** components */
-import AddContactModal from "./AddContactModal";
 import ContactLists from "./ContactLists";
-import {v4 as uuidv4} from 'uuid'
+import AddContactModal from "./AddContactModal";
 
-export default function Contacts({addContactModal, setAddContactModal}) {
-  const [addContacts, setAddContacts] = useState(() => {
-    return JSON.parse(localStorage.getItem("contact"))
-  || [] });
-  
-  useEffect(() => {
-    localStorage.setItem("contact",JSON.stringify(addContacts))
-  }, [addContacts])
-
-  const handleContacts = (data) => {
-    if(addContacts.findIndex((contacts) => contacts.data.email === data.email) === -1){
-      setAddContacts([...addContacts, {data, id:uuidv4()}]);
-    }
-  };
-
-  const handleDeleteContact = (contact) => {
-    setAddContacts(addContacts.filter((id) => id !== contact ))
-  }
-
+export default function Contacts({
+  addContacts,
+  handleDeleteContact,
+}) {
   return (
     <div>
       <div className="bg-[#121D2B] py-10">
@@ -54,17 +37,17 @@ export default function Contacts({addContactModal, setAddContactModal}) {
         </div>
         <div className="flex flex-col items-stretch gap-3 lg:px-[200px] md:px-[40px] px-[10px] mt-5">
           {addContacts.map((contactLists, index) => (
-           <ContactLists 
-           contactLists={contactLists}
-           handleDeleteContact={handleDeleteContact}
-           />
+            <ContactLists
+              contactLists={contactLists}
+              handleDeleteContact={handleDeleteContact}
+            />
           ))}
         </div>
       </div>
-
-      <div>
+      
+      {/* <div>
         {addContactModal  && ( <AddContactModal setAddContactModal={setAddContactModal} handleContacts={handleContacts} /> )}
-      </div>
+      </div> */}
     </div>
   );
 }

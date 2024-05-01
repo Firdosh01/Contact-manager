@@ -1,11 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 /** components */
 import Contacts from "./components/Contacts";
 /** style */
 import "./App.css";
+import AddContactModal from "./components/AddContactModal";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const [addContactModal, setAddContactModal] = useState(false);
+  const [addContacts, setAddContacts] = useState(() => {
+    return JSON.parse(localStorage.getItem("contact")) || [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("contact", JSON.stringify(addContacts));
+  }, [addContacts]);
+
+  const handleContacts = (data) => {
+    if(addContacts.findIndex((contacts) => contacts.data.email === data.email) === -1){
+      setAddContacts([...addContacts, {data, id:uuidv4()}]);
+    }
+  };
+
+  const handleDeleteContact = (contact) => {
+    setAddContacts(addContacts.filter((id) => id !== contact));
+  };
 
   return (
     <div>
@@ -31,7 +50,20 @@ function App() {
           </button>
         </div>
       </div>
-      <Contacts addContactModal={addContactModal} setAddContactModal={setAddContactModal}/>
+      <Contacts
+        addContacts={addContacts}
+        handleDeleteContact={handleDeleteContact}
+      />
+      <div>
+        {addContactModal && (
+          <AddContactModal
+            setAddContactModal={setAddContactModal}
+            handleContacts={handleContacts}
+          >
+            ok
+          </AddContactModal>
+        )}
+      </div>
     </div>
   );
 }
