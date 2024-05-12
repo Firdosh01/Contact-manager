@@ -2,20 +2,20 @@ import React from "react";
 import { useState } from "react";
 
 export default function AddContactModal({
+  addContactModal,
   setAddContactModal,
   handleContacts,
-  editContact
+  setEditContactModal,
+  editContactModal,
+  defaultValue
 }) {
-  const [contact, setContact] = useState({
+  const [contact, setContact] = useState(defaultValue || {
     name: "",
     number: "",
   });
 
   const changeHandler = (e) => {
-    setContact((prevData) => ({
-      ...prevData,
-      [e.target.name]: e.target.value,
-    }));
+    setContact({ ...contact, [e.target.name]: e.target.value });
   };  
 
   const handleAddContacts = (e) => {
@@ -25,22 +25,34 @@ export default function AddContactModal({
     } else {
       handleContacts(contact);
       setAddContactModal(false);  
+      setEditContactModal(false)
     }
   };
 
   const handleOverlayClick = (event) => {
     if (event.target === event.currentTarget) {
-      setAddContactModal(false);  
+      console.log(event.target)
+      console.log(event.currentTarget)
+      setAddContactModal(false); 
+      setEditContactModal(false) 
     }
   };
+
+  const handleCloseModal = () => {
+    if(addContactModal) {
+      setAddContactModal(false)
+    }else {
+      setEditContactModal(false)
+    }
+  }
 
   return (
     <div onClick={handleOverlayClick} className="fixed inset-0 z-[1000] !mt-0 grid place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
       <div className="bg-[#121D2B] rounded-md w-[500px] m-5 p-4 relative">
-        <h3 className="text-[#B554D7] text-center text-xl">{editContact ? "Update Contact" : "Add Contact"}</h3>
+        <h3 className="text-[#B554D7] text-center text-xl">{editContactModal ? "Update Contact" : "Add Contact"}</h3>
         <div
           className="absolute cursor-pointer right-2 top-4" 
-          onClick={() => setAddContactModal(false)}
+          onClick={() => handleCloseModal()}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +110,7 @@ export default function AddContactModal({
                   fill="#121D2B"
                 />
               </svg>
-              {editContact ? "Update" : "Add"}
+              {editContactModal ? "Update" : "Add"}
             </button>
           </div>
         </form>
