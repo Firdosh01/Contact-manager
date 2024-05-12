@@ -88,7 +88,7 @@ export default function AddContactModal({
               Phone no
             </label>
             <input
-              type="text"
+              type="number"
               id="number"
               name="number"
               placeholder="Enter Phone no"

@@ -85,12 +85,13 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-stretch gap-3 lg:px-[200px] md:px-[40px] px-[10px] mt-5">
+        <div>
           <ContactLists 
             contactsData={addContacts}
             handleDelete={handleDeleteContact}
             handleEdit={handleEditContact}
           />
+          
         </div>
       </div>
 

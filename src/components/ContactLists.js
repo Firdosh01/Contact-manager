@@ -7,7 +7,7 @@ import { MdDelete } from "react-icons/md";
 export default function ContactLists({ contactsData, handleDelete, handleEdit }) {
 
   return (
-    <div>
+    <div className="flex flex-col items-stretch gap-3 lg:px-[200px] md:px-[40px] px-[10px] mt-5">
       {contactsData.map((contacts, index) => {
         return (
           <div
