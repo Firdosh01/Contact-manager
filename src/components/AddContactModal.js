@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { toast } from 'react-toastify';
 
 export default function AddContactModal({
   addContactModal,
@@ -21,7 +22,7 @@ export default function AddContactModal({
   const handleAddContacts = (e) => {
     e.preventDefault()
     if (contact.name === "" || contact.number === "") {
-      alert("Please enter contact details")
+      toast.error("please enter contact details")
     } else {
       handleContacts(contact);
       setAddContactModal(false);  

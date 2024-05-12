@@ -4,6 +4,7 @@ import "./App.css";
 /** components */
 import AddContactModal from "./components/AddContactModal";
 import ContactLists from "./components/ContactLists";
+import { toast } from "react-toastify";
 
 function App() {
   const [addContactModal, setAddContactModal] = useState(false);
@@ -22,10 +23,12 @@ function App() {
         return data
       }
     }))
+    toast.success("Contact details added")
   };
   
   const handleDeleteContact = (deleteIndex) => {
     setAddContacts(addContacts.filter((_,index) => index !== deleteIndex));
+    toast.success("Contact deleted")
   };
 
   const handleEditContact = (editIndex) => {
