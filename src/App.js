@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React, {useEffect, useState } from "react";
 /** style */
 import "./App.css";
 /** components */
@@ -9,9 +9,9 @@ import { toast } from "react-toastify";
 function App() {
   const [addContactModal, setAddContactModal] = useState(false);
   const [editContactModal, setEditContactModal] = useState(false);
-  const [addContacts, setAddContacts] = useState([]);
+  const [addContacts, setAddContacts] = useState(() => {return JSON.parse(localStorage.getItem("contact"))  || []});
   const [contactEdit, setContactEdit] = useState(null);
-
+  const [search, setSearch] = useState("");
 
   const handleSubmitContacts = (data) => {
     contactEdit === null ?  
@@ -35,6 +35,14 @@ function App() {
     setContactEdit(editIndex)
     setEditContactModal(true)
   };
+
+  const handleSearch = (e) => {
+     setSearch(e.target.value);
+  }
+
+  useEffect(() => {
+    localStorage.setItem("contact",JSON.stringify(addContacts))
+  }, [addContacts])
 
   return (
     <div>
@@ -67,6 +75,7 @@ function App() {
             <input
               type="text"
               placeholder="Search contacts"
+              onChange={(e) => handleSearch(e)}
               className="rounded-full outline-none bg-slate-700 md:w-[400px] w-[300px] px-4 text-white placeholder:select-none"
             />
             <div className="bg-[#B554D7] w-fit p-2 rounded-full cursor-pointer">
@@ -96,7 +105,7 @@ function App() {
       </div>
 
       <div>
-        {addContactModal | editContactModal && (
+        {(addContactModal || editContactModal) && (
           <AddContactModal
             addContactModal={addContactModal}
             setAddContactModal={setAddContactModal}
