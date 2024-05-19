@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import React, {useEffect, useRef, useState } from "react";
 /** style */
 import "./App.css";
 /** components */
@@ -12,6 +12,7 @@ function App() {
   const [addContacts, setAddContacts] = useState(() => {return JSON.parse(localStorage.getItem("contact"))  || []});
   const [contactEdit, setContactEdit] = useState(null);
   const [search, setSearch] = useState("");
+  const [searchContactsResult, setSearchContactsResult] = useState([])
 
   const handleSubmitContacts = (data) => {
     contactEdit === null ?  
@@ -38,6 +39,14 @@ function App() {
 
   const handleSearch = (e) => {
      setSearch(e.target.value);
+     if(search !== ' ') {
+      const searchContacts = addContacts.filter((contact) => {
+        return (Object.values(contact).join(" ").toLowerCase().includes(search.toLowerCase()))
+      })
+      setSearchContactsResult(searchContacts)
+     }else {
+      setSearchContactsResult(addContacts)
+     }
   }
 
   useEffect(() => {
@@ -96,11 +105,10 @@ function App() {
         </div>
         <div>
           <ContactLists 
-            contactsData={addContacts}
+            contactsData={search.length < 1 ? addContacts : searchContactsResult}
             handleDelete={handleDeleteContact}
             handleEdit={handleEditContact}
           />
-          
         </div>
       </div>
 
