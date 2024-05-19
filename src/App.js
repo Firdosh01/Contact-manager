@@ -41,7 +41,7 @@ function App() {
      setSearch(e.target.value);
      if(search !== ' ') {
       const searchContacts = addContacts.filter((contact) => {
-        return (Object.values(contact).join(" ").toLowerCase().includes(search.toLowerCase()))
+        return (Object.values(contact).join(" ").toLowerCase().includes(search.trim().toLowerCase()))
       })
       setSearchContactsResult(searchContacts)
      }else {
