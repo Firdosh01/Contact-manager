@@ -6,9 +6,13 @@ import { MdDelete } from "react-icons/md";
 
 export default function ContactLists({ contactsData, handleDelete, handleEdit }) {
 
+  const contactsAsc = contactsData.sort((a, b) => {
+    return a.name.localeCompare(b.name);
+  });
+
   return (
     <div className="flex flex-col items-stretch gap-3 lg:px-[200px] md:px-[40px] px-[10px] mt-5">
-      {contactsData.map((contacts, index) => {
+      {contactsAsc.map((contacts, index) => {
         return (
           <div
           key={index}

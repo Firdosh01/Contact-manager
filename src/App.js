@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState } from "react";
+import React, {useEffect, useState } from "react";
 /** style */
 import "./App.css";
 /** components */
@@ -24,7 +24,12 @@ function App() {
         return data
       }
     }))
-    toast.success("Contact details added")
+    if(editContactModal) {
+      toast.success("Contact details updated")
+    }else {
+      toast.success("Contact details added")
+    }
+    
   };
   
   const handleDeleteContact = (deleteIndex) => {
@@ -124,6 +129,7 @@ function App() {
           />
         )}
       </div>
+
     </div>
   );
 }
