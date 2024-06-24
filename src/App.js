@@ -46,7 +46,7 @@ function App() {
      setSearch(e.target.value);
      if(search !== ' ') {
       const searchContacts = addContacts.filter((contact) => {
-        return (Object.values(contact).join(" ").toLowerCase().includes(search.trim().toLowerCase()))
+        return (Object.values(contact).join(" ").toLowerCase().includes(search.toLowerCase()))
       })
       setSearchContactsResult(searchContacts)
      }else {
@@ -78,7 +78,7 @@ function App() {
                 fill="#B554D7"
               />
             </svg>
-            Add contact
+            Add Contact
           </button>
         </div>
       </div>

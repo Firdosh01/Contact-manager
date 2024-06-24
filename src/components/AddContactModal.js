@@ -22,7 +22,7 @@ export default function AddContactModal({
   const handleAddContacts = (e) => {
     e.preventDefault()
     if (contact.name === "" || contact.number === "") {
-      toast.error("please enter contact details")
+      toast.error("Please enter contact details")
     } else {
       handleContacts(contact);
       setAddContactModal(false);  
