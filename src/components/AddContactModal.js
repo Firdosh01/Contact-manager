@@ -8,6 +8,7 @@ export default function AddContactModal({
   handleContacts,
   setEditContactModal,
   editContactModal,
+  setContactEdit,
   defaultValue
 }) {
   const [contact, setContact] = useState(editContactModal ? defaultValue : {
@@ -35,7 +36,8 @@ export default function AddContactModal({
       console.log(event.target)
       console.log(event.currentTarget)
       setAddContactModal(false); 
-      setEditContactModal(false) 
+      setEditContactModal(false)
+      setContactEdit(null)
     }
   };
   

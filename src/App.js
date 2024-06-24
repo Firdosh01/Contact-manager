@@ -124,6 +124,7 @@ function App() {
             setAddContactModal={setAddContactModal}
             editContactModal={editContactModal}
             setEditContactModal={setEditContactModal}
+            setContactEdit={setContactEdit}
             handleContacts={handleSubmitContacts}
             defaultValue={contactEdit !== null && addContacts[contactEdit]}
           />
