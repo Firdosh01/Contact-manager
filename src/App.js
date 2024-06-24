@@ -63,7 +63,7 @@ function App() {
       <div className="bg-[#B554D7] h-[100px]">
         <div className="flex items-center justify-center">
           <button
-            className="flex gap-1 outline-none bg-btn hover:text-[#B554D7] py-4 w-[60%] text-center text-[#121D2B] hover:bg-[#121D2B] rounded duration-500 font-semibold text-xl justify-center items-center mt-8"
+            className="flex gap-1 outline-none bg-btn hover:text-[#B554D7] md:py-4 py-2 w-[60%] text-center text-[#121D2B] hover:bg-[#121D2B] rounded duration-500 font-semibold md:text-xl text-lg justify-center items-center mt-8"
             onClick={() => setAddContactModal(true)}
           >
             <svg
@@ -82,7 +82,7 @@ function App() {
           </button>
         </div>
       </div>
-      <div className="bg-[#121D2B] py-10">
+      <div className="bg-[#121D2B] md:py-10 py-5">
         <div className="flex flex-col items-center justify-center">
           <p className="pb-2 text-lg text-gray-500">Search by name & number</p>
           <div className="flex gap-2">

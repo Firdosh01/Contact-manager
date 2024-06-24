@@ -50,7 +50,7 @@ export default function AddContactModal({
 
   return (
     <div onClick={handleOverlayClick} className="fixed inset-0 z-[1000] !mt-0 grid place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
-      <div className="bg-[#121D2B] rounded-md w-[500px] m-5 p-4 relative">
+      <div className="bg-[#121D2B] rounded-md md:w-[500px] w-[330px]   m-5 p-4 relative">
         <h3 className="text-[#B554D7] text-center text-xl">{editContactModal ? "Update Contact" : "Add Contact"}</h3>
         <div
           className="absolute cursor-pointer right-2 top-4" 
@@ -99,7 +99,7 @@ export default function AddContactModal({
             />
           </div>
           <div  className="w-fit">
-            <button type="submit" className="bg-[#B554D7]  py-2 px-5 w-fit text-black flex rounded-sm">
+            <button type="submit" className="bg-[#B554D7]  md:py-2 py-1 px-5 w-fit text-black flex rounded-sm">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"  
